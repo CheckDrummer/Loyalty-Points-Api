@@ -2,6 +2,7 @@ package ru.raiffeisen.test.loyaltypointsapi.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.raiffeisen.test.loyaltypointsapi.model.LoyaltyPoints;
@@ -18,18 +19,18 @@ public class LoyaltyPointsController {
     private LoyaltyPointsService loyaltyPointsService;
     private CurrentPointsService currentPointsService;
 
-    @GetMapping(URL + "/current")
-    public Integer getCurrentPoints(@RequestParam(name = "userId") Integer userId) {
+    @GetMapping("{userId}" + URL + "/current")
+    public Integer getCurrentPoints(@PathVariable Integer userId) {
         return currentPointsService.getCurrentPoints(userId);
     }
 
-    @GetMapping(URL + "/history")
-    public List<LoyaltyPoints> getPointsHistory(@RequestParam(name = "userId") Integer userId) {
+    @GetMapping("{userId}" + URL + "/history")
+    public List<LoyaltyPoints> getPointsHistory(@PathVariable Integer userId) {
         return loyaltyPointsService.getPointsHistory(userId);
     }
 
-    @GetMapping(URL + "/pending")
-    public Integer getPendingPoints(@RequestParam(name = "userId") Integer userId) {
+    @GetMapping("{userId}" + URL + "/pending")
+    public Integer getPendingPoints(@PathVariable Integer userId) {
         return loyaltyPointsService.getPendingPoints(userId);
     }
 
