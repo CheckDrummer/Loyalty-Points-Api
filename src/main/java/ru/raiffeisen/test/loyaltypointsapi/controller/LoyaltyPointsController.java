@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.raiffeisen.test.loyaltypointsapi.model.LoyaltyPoints;
+import ru.raiffeisen.test.loyaltypointsapi.service.CurrentPointsService;
 import ru.raiffeisen.test.loyaltypointsapi.service.LoyaltyPointsService;
 import java.util.List;
 
@@ -15,10 +16,11 @@ public class LoyaltyPointsController {
     public static final String URL = "/points";
 
     private LoyaltyPointsService loyaltyPointsService;
+    private CurrentPointsService currentPointsService;
 
     @GetMapping(URL + "/current")
     public Integer getCurrentPoints(@RequestParam(name = "userId") Integer userId) {
-        return loyaltyPointsService.getCurrentPoints(userId);
+        return currentPointsService.getCurrentPoints(userId);
     }
 
     @GetMapping(URL + "/history")
@@ -36,6 +38,6 @@ public class LoyaltyPointsController {
     @Deprecated
     @GetMapping(URL + "/test")
     public void testStartOfPointsCalculation() {
-        loyaltyPointsService.calculateCurrentPoints();
+        currentPointsService.calculateCurrentPoints();
     }
 }

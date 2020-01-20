@@ -1,4 +1,4 @@
-package ru.raiffeisen.test.loyaltypointsapi.Utils;
+package ru.raiffeisen.test.loyaltypointsapi.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
